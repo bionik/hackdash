@@ -1,0 +1,201 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>//hackdash</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata|Open+Sans:300,400,700,800' rel='stylesheet' type='text/css'>
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+
+  </head>
+  <body class="overlay">
+
+    <div class="dashboard" id="app">
+      <div id="header" class="pane header">
+        <header>
+          <h1>//hackdash</h1>
+          <h2>hacklab turku</h2>
+        </header>
+
+        <div class="datetime">
+          <div class="time"></div>
+          <div class="date">sunday, january 12</div>
+        </div>
+
+      </div>
+
+      <div id="sidebar" class="pane sidebar">
+        <section class="temperature">
+          <h2>temperature at the lab</h2>
+          <div class="content">
+            <canvas id="graph_temperature" width="300" height="200"></canvas>
+          </div>
+        </section>
+        <section class="lights">
+          <h2>status of the lights</h2>
+          <ul class="content">
+            <li class="room">Lights are <span id="room1" class="status">on</span> in the electronics room.</li>
+            <li class="room">Lights are <span id="room2" class="status">off</span> in the mechanics room.</li>
+          </ul>
+        </section>
+      </div>
+
+      <div id="main" class="pane main">
+        <section>
+          <div class="infobox">
+            <h2>#hacklabturku</h2>
+            <p>This is a live feed from #hacklabturku irc channel on IRCNet. Please feel free to join the discussion!</p>
+          </div>
+          <div class="content irc">
+            <div class="wrapper">
+              <div class="empty">Empty</div>
+              <div class="row">
+                <div class="time">12:01:20</div>
+                <div class="nick">bionik</div>
+                <div class="text">mitähän hittoa tässä sitten?</div>
+              </div>
+              <div class="row">
+                <div class="time">12:04:15</div>
+                <div class="nick">krintinjo</div>
+                <div class="text">huh huh, saa nakata melkein roskalavalle..</div>
+              </div>
+              <div class="row">
+                <div class="time">12:08:11</div>
+                <div class="nick">netl</div>
+                <div class="text">https://www.ti.com/seclit/ml/slyw038a/slyw038a.pdf tuon vois varmaan läbille printtauttaa</div>
+              </div>
+              <div class="row">
+                <div class="time">12:01:20</div>
+                <div class="nick">bionik</div>
+                <div class="text">mitähän hittoa tässä sitten?</div>
+              </div>
+              <div class="row">
+                <div class="time">12:04:15</div>
+                <div class="nick">krintinjo</div>
+                <div class="text">huh huh, saa nakata melkein roskalavalle..</div>
+              </div>
+              <div class="row">
+                <div class="time">12:08:11</div>
+                <div class="nick">netl</div>
+                <div class="text">https://www.ti.com/seclit/ml/slyw038a/slyw038a.pdf tuon vois varmaan läbille printtauttaa</div>
+              </div>
+              <div class="row">
+                <div class="time">12:01:20</div>
+                <div class="nick">bionik</div>
+                <div class="text">mitähän hittoa tässä sitten?</div>
+              </div>
+              <div class="row">
+                <div class="time">12:04:15</div>
+                <div class="nick">krintinjo</div>
+                <div class="text">huh huh, saa nakata melkein roskalavalle..</div>
+              </div>
+              <div class="row">
+                <div class="time">12:08:11</div>
+                <div class="nick">netl</div>
+                <div class="text">https://www.ti.com/seclit/ml/slyw038a/slyw038a.pdf tuon vois varmaan läbille printtauttaa</div>
+              </div>
+              <div class="row">
+                <div class="time">12:01:20</div>
+                <div class="nick">bionik</div>
+                <div class="text">mitähän hittoa tässä sitten?</div>
+              </div>
+              <div class="row">
+                <div class="time">12:04:15</div>
+                <div class="nick">krintinjo</div>
+                <div class="text">huh huh, saa nakata melkein roskalavalle..</div>
+              </div>
+              <div class="row">
+                <div class="time">12:08:11</div>
+                <div class="nick">netl</div>
+                <div class="text">https://www.ti.com/seclit/ml/slyw038a/slyw038a.pdf tuon vois varmaan läbille printtauttaa</div>
+              </div>
+              <div class="row">
+                <div class="time">12:01:20</div>
+                <div class="nick">bionik</div>
+                <div class="text">mitähän hittoa tässä sitten?</div>
+              </div>
+              <div class="row">
+                <div class="time">12:04:15</div>
+                <div class="nick">krintinjo</div>
+                <div class="text">huh huh, saa nakata melkein roskalavalle..</div>
+              </div>
+              <div class="row">
+                <div class="time">12:08:11</div>
+                <div class="nick">netl</div>
+                <div class="text">https://www.ti.com/seclit/ml/slyw038a/slyw038a.pdf tuon vois varmaan läbille printtauttaa</div>
+              </div>
+              <div class="row">
+                <div class="time">12:01:20</div>
+                <div class="nick">bionik</div>
+                <div class="text">mitähän hittoa tässä sitten?</div>
+              </div>
+              <div class="row">
+                <div class="time">12:04:15</div>
+                <div class="nick">krintinjo</div>
+                <div class="text">huh huh, saa nakata melkein roskalavalle..</div>
+              </div>
+              <div class="row">
+                <div class="time">12:08:11</div>
+                <div class="nick">netl</div>
+                <div class="text">https://www.ti.com/seclit/ml/slyw038a/slyw038a.pdf tuon vois varmaan läbille printtauttaa</div>
+              </div>
+              <div class="row">
+                <div class="time">12:01:20</div>
+                <div class="nick">bionik</div>
+                <div class="text">mitähän hittoa tässä sitten?</div>
+              </div>
+              <div class="row">
+                <div class="time">12:04:15</div>
+                <div class="nick">krintinjo</div>
+                <div class="text">huh huh, saa nakata melkein roskalavalle..</div>
+              </div>
+              <div class="row">
+                <div class="time">12:08:11</div>
+                <div class="nick">netl</div>
+                <div class="text">https://www.ti.com/seclit/ml/slyw038a/slyw038a.pdf tuon vois varmaan läbille varmaan läbille varmaan läbille printtauttaa</div>
+              </div>
+              <div class="row">
+                <div class="time">12:01:20</div>
+                <div class="nick">bionik</div>
+                <div class="text">mitähän hittoa tässä sitten?</div>
+              </div>
+              <div class="row">
+                <div class="time">12:04:15</div>
+                <div class="nick">krintinjo</div>
+                <div class="text">huh huh, saa nakata melkein varmaan läbille varmaan läbille varmaan läbille varmaan läbille varmaan läbille roskalavalle..</div>
+              </div>
+              <div class="row">
+                <div class="time">12:08:11</div>
+                <div class="nick">netl</div>
+                <div class="text">https://www.ti.com/seclit/ml/slyw038a/slyw038a.pdf tuon vois varmaan läbille printtauttaa</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </div>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/Chart.js/Chart.min.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({app,.tmp}) scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
