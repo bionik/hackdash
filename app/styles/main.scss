@@ -2,11 +2,48 @@
 // endbower
 $bgcolor: #262626;
 $color: #fefefe;
+$notifycolor: rgb(218, 171, 69);
 $header_height: 120px;
 $padding_x: 40px;
 $padding_y: 20px;
 
 $sidebar_width: 380px;
+
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inconsolata'), url(../fonts/i_1.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(../fonts/o_1.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(../fonts/o_2.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(../fonts/o_3.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Open Sans Extrabold'), local('OpenSans-Extrabold'), url(../fonts/o_4.ttf) format('truetype');
+}
+
 
 html, body {
   height: 100%;
@@ -159,7 +196,7 @@ h2 .datetime .date {
       height: 50px;
       overflow: hidden;
 
-      .wrapper {
+      > .wrapper {
         z-index: 1;
         position: absolute;
         left: 0;
@@ -176,8 +213,25 @@ h2 .datetime .date {
         .row {
           @extend .cf;
           //display: table-row;
-          display: table;
           margin-bottom: 5px;
+
+          > .wrapper {
+            display: table;
+          }
+
+        }
+
+        .notification {
+          background: rgba($notifycolor, 0.1);
+          border: 1px solid rgba($notifycolor, 0.6);
+          padding: 1em 1.5em;
+
+          .title {
+            margin-bottom: 0.5em;
+          }
+        }
+
+        .message {
           line-height: 20px;
           font-size: 15px;
 
