@@ -128,12 +128,14 @@ var App = function(container){
   //Update every second
   a.updateSecond = function(){
     //log('updateSecond');
-    $(a.timeContainer).html(moment().format('HH:mm'));
+    var m = moment();
+    $(a.timeContainer).html(m.format('HH:mm'));
+    $(a.dateContainer).html(m.format('dddd, MMMM Do').toLowerCase());
+
   };
 
   a.updateMinute = function(){
     //log('updateMinute');
-    $(a.dateContainer).html(moment().format('dddd, MMMM Do').toLowerCase());
 
     //Get light status and update.
     a.updateLights();
