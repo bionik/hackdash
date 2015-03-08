@@ -193,7 +193,7 @@ h2 .datetime .date {
 
     .irc {
       position: relative;
-      height: 50px;
+      height: 0px;
       overflow: hidden;
 
       > .wrapper {
@@ -288,6 +288,7 @@ section.lights {
     $hilight_color: rgba(255, 255, 255, 1);
 
     .status.on {
+      font-weight: bold;
       color: rgb(254, 254, 254);
       text-shadow: 2px 0px 6px $hilight_color, -2px 0px 6px $hilight_color, 0px 8px 6px $hilight_color;
       border-bottom: 2px solid $hilight_color !important;
