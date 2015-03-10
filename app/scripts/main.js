@@ -7,7 +7,7 @@
 var config = {
   debug: true,
   apiLocation: 'http://192.168.11.2/pi_api/',
-  maxRows: 30,
+  maxRows: 40,
   color: '254,254,254',
   temperatureLabels: ['0h', '', '', '', '1h', '', '', '', '2h', '', '', '', '3h'],
 };
