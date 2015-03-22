@@ -181,15 +181,22 @@ h2 .datetime .date {
     padding-right: 60px;
 
     .irc:before {
-      z-index: 2;
+      z-index: 80;
       content: '';
       position: absolute;
       left: 0;
       right: 0;
       top: 0;
       height: 45px;
-      background: -webkit-linear-gradient(top, rgba($bgcolor, 1) 0%, rgba($bgcolor, 0) 100%);
-      background: linear-gradient(to bottom, rgba($bgcolor, 1) 0%, rgba($bgcolor, 0) 100%);
+      //background: -webkit-linear-gradient(top, rgba($bgcolor, 0.999) 0%, rgba($bgcolor, 0) 100%);
+      //background: linear-gradient(to bottom, rgba($bgcolor, 0.999) 0%, rgba($bgcolor, 0) 100%);
+
+      background: -moz-linear-gradient(top, rgba($bgcolor, 0.999) 0%, rgba($bgcolor, 0) 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba($bgcolor, 0.999)), color-stop(100%,rgba($bgcolor, 0)));
+      background: -webkit-linear-gradient(top, rgba($bgcolor, 0.999) 0%,rgba($bgcolor, 0) 100%);
+      background: -o-linear-gradient(top, rgba($bgcolor, 0.999) 0%,rgba($bgcolor, 0) 100%);
+      background: -ms-linear-gradient(top, rgba($bgcolor, 0.999) 0%,rgba($bgcolor, 0) 100%);
+      background: linear-gradient(to bottom, rgba($bgcolor, 0.999) 0%,rgba($bgcolor, 0) 100%);
     }
 
     .irc {
@@ -274,6 +281,49 @@ h2 .datetime .date {
 
 }
 
+section.buses {
+
+  h3 {
+    font-weight: normal;
+    font-size: 15px;
+    margin-bottom: 0.3em;
+  }
+
+  ul {
+    padding-left: 1.2em;
+    margin-bottom: 1.0em;
+
+    .busline {
+      margin-bottom: 0.3em;
+
+      .time {
+        font-weight: bold;
+      }
+
+      .line {
+        font-weight: normal;
+
+        &:before {
+          color: rgba($color, 0.5);
+          content: '- ';
+        }
+      }
+
+      .destination {
+        text-transform: lowercase;
+        color: rgba($color, 0.5);
+
+        &:before {
+
+          content: '- ';
+        }
+      }
+
+    }
+
+  }
+}
+
 section.lights {
   ul {
     padding-left: 1.2em;
@@ -308,10 +358,20 @@ section.lights {
 
 .cf:before,
 .cf:after {
-    content: " ";
-    display: table;
+  content: " ";
+  display: table;
 }
 
 .cf:after {
-    clear: both;
+  clear: both;
+}
+
+//Old browser support...
+.dashboard .main .irc::before {
+  background: -moz-linear-gradient(top, #262626 0%, rgba(38, 38, 38, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #262626, color-stop(100%,rgba(38, 38, 38, 0)));
+  background: -webkit-linear-gradient(top, #262626 0%,rgba(38, 38, 38, 0) 100%);
+  background: -o-linear-gradient(top, #262626 0%,rgba(38, 38, 38, 0) 100%);
+  background: -ms-linear-gradient(top, #262626 0%,rgba(38, 38, 38, 0) 100%);
+  background: linear-gradient(to bottom, #262626 0%,rgba(38, 38, 38, 0) 100%);
 }

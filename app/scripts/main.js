@@ -10,6 +10,7 @@ var config = {
   maxRows: 40,
   color: '254,254,254',
   temperatureLabels: ['0h', '', '', '', '1h', '', '', '', '2h', '', '', '', '3h'],
+  buslineCount: 3
 };
 
 function log(obj){
@@ -125,6 +126,18 @@ var App = function(container){
     }
   };
 
+  a.refreshBuses = function(data){
+    log(data);
+    log('refreshBuses');
+    var dom = '';
+
+    var source = $('#content-buslines-template').html();
+    var template = window.Handlebars.compile(source);
+    dom = $(template(data));
+
+    $('#content-buses').html(dom);
+  };
+
   //Update every second
   a.updateSecond = function(){
     //log('updateSecond');
@@ -139,6 +152,10 @@ var App = function(container){
 
     //Get light status and update.
     a.updateLights();
+
+    //Update buslines
+    a.updateBuses();
+
   };
 
   a.update15Minutes = function(){
@@ -163,6 +180,27 @@ var App = function(container){
       }, 'JSON')
     ).then(function(){
       a.refreshLights(room1 === 0, room2 === 0);
+    });
+  };
+
+  a.updateBuses = function(){
+    log('updateBuses');
+    var stop264;
+    var stop662;
+    $.when(
+      $.get(config.apiLocation+'folistop/', {a: 'getStop', stop: 264}, function(response){
+        log(response);
+        stop264 = response.data;
+      }, 'JSON'),
+      $.get(config.apiLocation+'folistop/', {a: 'getStop', stop: 662}, function(response){
+        log(response);
+        stop662 = response.data;
+      }, 'JSON')
+    ).then(function(){
+      var lines = [];
+      lines.push({line: 'varsatie (264)', buses: stop264.slice(0, config.buslineCount)});
+      lines.push({line: 'polttolaitoksenkatu (662)', buses: stop662.slice(0, config.buslineCount)});
+      a.refreshBuses({lines: lines});
     });
   };
 

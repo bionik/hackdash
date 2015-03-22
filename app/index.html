@@ -22,7 +22,7 @@
   <body class="overlay">
 
     <script id="content-mesage-template" type="text/x-handlebars-template">
-     <div class="row message" style="display: none;">
+      <div class="row message" style="display: none;">
         <div class="wrapper">
           <div class="time">{{time}}</div>
           <div class="nick">{{nick}}</div>
@@ -32,7 +32,7 @@
     </script>
 
     <script id="content-status-template" type="text/x-handlebars-template">
-     <div class="row status" style="display: none;">
+      <div class="row status" style="display: none;">
         <div class="wrapper">
           <div class="text"><span class="time">{{time}}</span> - {{message}}</div>
         </div>
@@ -40,12 +40,25 @@
     </script>
 
     <script id="content-notification-template" type="text/x-handlebars-template">
-     <div class="row notification" style="display: none;">
+      <div class="row notification" style="display: none;">
         <div class="wrapper">
           <div class="title"><span class="nick">{{nick}}</span> - <span class="time">{{time}}</span></div>
           <div class="text">{{message}}</div>
         </div>
       </div>
+    </script>
+
+    <script id="content-buslines-template" type="text/x-handlebars-template">
+      {{#each lines}}
+        <h3>{{line}}</h3>
+        <ul class="buslines">
+          {{#each buses}}
+          <li class="busline">
+            <span class="time">{{time}}</span> <span class="line">{{line}}</span> <span class="destination">{{dest}}</span>
+          </li>
+         {{/each}}
+        </ul>
+      {{/each}}
     </script>
 
     <div class="dashboard" id="app">
@@ -76,6 +89,12 @@
             <li class="room">Lights are <span id="room1" class="status off">off</span> in the electronics room.</li>
             <li class="room">Lights are <span id="room2" class="status off">off</span> in the mechanics room.</li>
           </ul>
+        </section>
+
+        <section class="buses">
+          <h2>buses to city</h2>
+          <div class="content" id="content-buses">
+          </div>
         </section>
 
       </div>
