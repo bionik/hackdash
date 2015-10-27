@@ -9,7 +9,7 @@ var config = {
   apiLocation: 'http://192.168.11.2/pi_api/',
   maxRows: 40,
   color: '254,254,254',
-  temperatureLabels: ['0h', '', '', '', '1h', '', '', '', '2h', '', '', '', '3h'],
+  dataLabels: ['0h', '', '', '', '1h', '', '', '', '2h', '', '', '', '3h'],
   buslineCount: 3
 };
 
@@ -36,6 +36,7 @@ var App = function(container){
   a.refreshSize = function(){
     log('refreshSize');
     a.temperatureGraph.update();
+    a.humidityGraph.update();
 
     var ircHeight = $(window).height()-$('.content.irc').offset().top-40;
     $('.content.irc').css({'height': ircHeight+'px'});
@@ -102,7 +103,7 @@ var App = function(container){
 
     var labels = [];
     for(var i=0; i<a.temperatureGraph.datasets[0].points.length; i++){
-      var label = config.temperatureLabels[( a.temperatureGraph.datasets[0].points.length - i)-1];
+      var label = config.dataLabels[( a.temperatureGraph.datasets[0].points.length - i)-1];
       labels.push(label);
     }
 
@@ -110,6 +111,26 @@ var App = function(container){
     a.temperatureGraph.update();
 
   };
+
+  a.addHumidity = function(reading){
+    log('addHumidity');
+    if (a.humidityGraph.datasets[0].points.length > 12) {
+      a.humidityGraph.removeData();
+    }
+
+    a.humidityGraph.addData([reading], '');
+
+    var labels = [];
+    for(var i=0; i<a.humidityGraph.datasets[0].points.length; i++){
+      var label = config.dataLabels[( a.humidityGraph.datasets[0].points.length - i)-1];
+      labels.push(label);
+    }
+
+    a.humidityGraph.scale.xLabels = labels;
+    a.humidityGraph.update();
+
+  };
+
 
   a.refreshLights = function(room1, room2){
     log('refreshLights');
@@ -163,7 +184,10 @@ var App = function(container){
 
     //Get temperature and update it in the graph.
     a.updateTemperature();
-  };
+
+    //Get humidity and update it in the graph.
+    a.updateHumidity();
+};
 
   a.updateLights = function(){
     log('updateLights');
@@ -211,6 +235,13 @@ var App = function(container){
     }, 'JSON');
   };
 
+  a.updateHumidity = function(){
+    $.get(config.apiLocation+'humidity/', {a: 'getHumidity'}, function(response){
+      log(response);
+      a.addHumidity( response.data );
+    }, 'JSON');
+  }
+
   a.init = function(){
     log('init');
 
@@ -226,15 +257,20 @@ var App = function(container){
     Chart.defaults.global.animationSteps = 30;
 
     var firstTemperature;
+    var firstHumidity;
 
     $.when(
       $.get(config.apiLocation+'temp/', {a: 'getTemp'}, function(response){
         firstTemperature = response.data;
+      }, 'JSON'),
+
+      $.get(config.apiLocation+'humidity/', {a: 'getHumidity'}, function(response){
+        firstHumidity = response.data;
       }, 'JSON')
 
     ).then(function(){
 
-      var data = {
+      var temperatureData = {
         labels: ['',''],
         datasets: [
           {
@@ -246,6 +282,22 @@ var App = function(container){
             pointHighlightFill: 'rgba('+config.color+',1)',
             pointHighlightStroke: 'rgba('+config.color+',1)',
             data: [firstTemperature, firstTemperature]
+          }
+        ]
+      };
+
+      var humidityData = {
+        labels: ['',''],
+        datasets: [
+          {
+            label: 'Humidity',
+            fillColor: 'rgba('+config.color+',0.1)',
+            strokeColor: 'rgba('+config.color+',1)',
+            pointColor: 'rgba('+config.color+',1)',
+            pointStrokeColor: 'rgba('+config.color+',0.8)',
+            pointHighlightFill: 'rgba('+config.color+',1)',
+            pointHighlightStroke: 'rgba('+config.color+',1)',
+            data: [firstHumidity, firstHumidity]
           }
         ]
       };
@@ -270,7 +322,12 @@ var App = function(container){
 
       //Get chart canvas & context
       var ctx = document.getElementById('graph_temperature').getContext('2d');
-      a.temperatureGraph = new Chart(ctx).Line(data, options);
+      a.temperatureGraph = new Chart(ctx).Line(temperatureData, options);
+
+      //Get chart canvas & context
+      var ctx = document.getElementById('graph_humidity').getContext('2d');
+      a.humidityGraph = new Chart(ctx).Line(humidityData, options);
+
 
       //Refresh screen size
       a.refreshSize();
