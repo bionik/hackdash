@@ -188,15 +188,7 @@ h2 .datetime .date {
       right: 0;
       top: 0;
       height: 45px;
-      //background: -webkit-linear-gradient(top, rgba($bgcolor, 0.999) 0%, rgba($bgcolor, 0) 100%);
-      //background: linear-gradient(to bottom, rgba($bgcolor, 0.999) 0%, rgba($bgcolor, 0) 100%);
-
-      background: -moz-linear-gradient(top, rgba($bgcolor, 0.999) 0%, rgba($bgcolor, 0) 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba($bgcolor, 0.999)), color-stop(100%,rgba($bgcolor, 0)));
-      background: -webkit-linear-gradient(top, rgba($bgcolor, 0.999) 0%,rgba($bgcolor, 0) 100%);
-      background: -o-linear-gradient(top, rgba($bgcolor, 0.999) 0%,rgba($bgcolor, 0) 100%);
-      background: -ms-linear-gradient(top, rgba($bgcolor, 0.999) 0%,rgba($bgcolor, 0) 100%);
-      background: linear-gradient(to bottom, rgba($bgcolor, 0.999) 0%,rgba($bgcolor, 0) 100%);
+      background: linear-gradient(to bottom, rgba($bgcolor, 0.999) 0%, rgba($bgcolor, 0) 100%);
     }
 
     .irc {

@@ -240,7 +240,7 @@ var App = function(container){
       log(response);
       a.addHumidity( response.data );
     }, 'JSON');
-  }
+  };
 
   a.init = function(){
     log('init');
@@ -321,12 +321,12 @@ var App = function(container){
       };
 
       //Get chart canvas & context
-      var ctx = document.getElementById('graph_temperature').getContext('2d');
-      a.temperatureGraph = new Chart(ctx).Line(temperatureData, options);
+      var temperatureCtx = document.getElementById('graph_temperature').getContext('2d');
+      a.temperatureGraph = new Chart(temperatureCtx).Line(temperatureData, options);
 
       //Get chart canvas & context
-      var ctx = document.getElementById('graph_humidity').getContext('2d');
-      a.humidityGraph = new Chart(ctx).Line(humidityData, options);
+      var humidityCtx = document.getElementById('graph_humidity').getContext('2d');
+      a.humidityGraph = new Chart(humidityCtx).Line(humidityData, options);
 
 
       //Refresh screen size
