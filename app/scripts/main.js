@@ -187,7 +187,7 @@ var App = function(container){
 
     //Get humidity and update it in the graph.
     a.updateHumidity();
-};
+  };
 
   a.updateLights = function(){
     log('updateLights');
@@ -231,6 +231,7 @@ var App = function(container){
   a.updateTemperature = function(){
     $.get(config.apiLocation+'temp/', {a: 'getTemp'}, function(response){
       log(response);
+      $('#temperature-value').html( response.data+'&deg;' );
       a.addTemperature( response.data );
     }, 'JSON');
   };
@@ -238,6 +239,7 @@ var App = function(container){
   a.updateHumidity = function(){
     $.get(config.apiLocation+'humidity/', {a: 'getHumidity'}, function(response){
       log(response);
+      $('#humidity-value').html( response.data+'%' );
       a.addHumidity( response.data );
     }, 'JSON');
   };
