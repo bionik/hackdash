@@ -28,8 +28,6 @@ var App = function(container){
   a.second = 0;
   a.minute = 0;
 
-  a.date = moment().format('dddd, MMMM Do');
-
   //Dom stuff
   a.container = container;
   a.timeContainer = $(container).find('.datetime .time');
@@ -62,15 +60,6 @@ var App = function(container){
         a.update15Minutes();
       }
     }
-
-    if(a.minute === 0 && a.second === 0) {
-      var newDate = moment().format('dddd, MMMM Do');
-      if (newDate !== a.date){
-        a.date = newDate;
-        a.addMessage({type: 'status', time: '00:00:00', message: 'Day changed to '+a.date});
-      }
-    }
-
   };
 
   a.addMessage = function(data){
@@ -181,6 +170,16 @@ var App = function(container){
     $(a.timeContainer).html(m.format('HH:mm'));
     $(a.dateContainer).html(m.format('dddd, MMMM Do').toLowerCase());
 
+    if(m.format('DDD') !== a.day) {
+      log('Check if day changed!');
+      var newDay = moment().format('DDD');
+      if (newDay !== a.day){
+        a.day = newDay;
+        log('Day changed!');
+        a.addMessage({type: 'status', data: {time: '00:00:00', message: 'Day changed to '+m.format('dddd, MMMM Do')}});
+      }
+    }
+
   };
 
   a.updateMinute = function(){
@@ -270,7 +269,7 @@ var App = function(container){
       }
     });
 
-    a.date = Date.now();
+    a.day = moment().format('DDD');
 
     Chart.defaults.global.scaleFontColor = 'rgba('+config.color+',1)';
     Chart.defaults.global.animationSteps = 30;
