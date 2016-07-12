@@ -6,7 +6,7 @@
 
 var config = {
   debug: true,
-  apiLocation: 'http://192.168.11.2/pi_api/',
+  apiLocation: 'http://10.0.1.2/pi_api/',
   maxRows: 40,
   color: '254,254,254',
   dataLabels: ['0h', '', '', '', '1h', '', '', '', '2h', '', '', '', '3h'],
