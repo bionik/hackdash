@@ -79,7 +79,7 @@ var App = function(container){
     var source, template;
 
     if (data.type === 'message'){
-      source = $('#content-mesage-template').html();
+      source = $('#content-message-template').html();
       template = window.Handlebars.compile(source);
       dom = $(template(data.data));
 
@@ -92,6 +92,10 @@ var App = function(container){
       source = $('#content-status-template').html();
       template = window.Handlebars.compile(source);
       dom = $(template(data.data));
+
+    } else {
+      return false;
+
     }
 
     $('#content-irc').append(dom);
