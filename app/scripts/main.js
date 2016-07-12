@@ -266,7 +266,7 @@ var App = function(container){
       }
     });
 
-    a.date = Date.now().
+    a.date = Date.now();
 
     Chart.defaults.global.scaleFontColor = 'rgba('+config.color+',1)';
     Chart.defaults.global.animationSteps = 30;
