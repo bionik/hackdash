@@ -258,7 +258,7 @@ var App = function(container){
   a.init = function(){
     log('init');
 
-    a.io = io('http://192.168.11.2:8008');
+    a.io = io('http://10.0.1.2:8008');
     a.io.on('packet', function(data) {
       log(data);
       if(typeof data.type !== 'undefined'){
