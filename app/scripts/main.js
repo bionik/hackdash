@@ -171,13 +171,9 @@ var App = function(container){
     $(a.dateContainer).html(m.format('dddd, MMMM Do').toLowerCase());
 
     if(m.format('DDD') !== a.day) {
-      log('Check if day changed!');
-      var newDay = moment().format('DDD');
-      if (newDay !== a.day){
-        a.day = newDay;
-        log('Day changed!');
-        a.addMessage({type: 'status', data: {time: '00:00:00', message: 'Day changed to '+m.format('dddd, MMMM Do')}});
-      }
+      log('Day changed!');
+      a.day = moment().format('DDD');
+      a.addMessage({type: 'status', data: {time: '00:00:00', message: 'Day changed to '+m.format('dddd, MMMM Do')}});
     }
 
   };
