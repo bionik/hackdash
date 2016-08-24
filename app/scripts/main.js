@@ -7,6 +7,9 @@
 var config = {
   debug: true,
   apiLocation: 'http://10.0.1.2/pi_api/',
+  ircSocketLocation: 'http://10.0.1.2:8008',
+  octoPrintLocation: 'http://10.0.1.3/',
+  octoPrintApiKey: '4E1A5A1DAFCF49BAA6A7814036FE6B06',
   maxRows: 40,
   color: '254,254,254',
   dataLabels: ['0h', '', '', '', '1h', '', '', '', '2h', '', '', '', '3h'],
@@ -151,6 +154,22 @@ var App = function(container){
     }
   };
 
+  a.refreshPrinter = function(online, printing, percentage) {
+    if(!online) {
+      $('#printer-status').html('3d printer is offline');
+      $('#printer-icon').attr('class','offline');
+    } else {
+      if (printing) {
+        $('#printer-status').html('current print '+percentage.toFixed(2)+'%');
+        $('#printer-icon').attr('class','printing');
+      } else {
+        $('#printer-status').html('3d printer is idle');
+        $('#printer-icon').attr('class','idle');
+      }
+    }
+  }
+
+
   a.refreshBuses = function(data){
     log(data);
     log('refreshBuses');
@@ -180,6 +199,8 @@ var App = function(container){
 
   a.updateMinute = function(){
     //log('updateMinute');
+    
+    a.updatePrinter();
 
     //Get light status and update.
     a.updateLights();
@@ -216,6 +237,27 @@ var App = function(container){
       a.refreshLights(room1 === 0, room2 === 0);
     });
   };
+
+  a.updatePrinter = function() {
+    log('updatePrinter');
+    var printing, percentage;
+    
+    $.when(
+      $.ajax({url: config.octoPrintLocation+'api/job', headers: {'X-Api-Key': config.octoPrintApiKey}, success: function(response) {
+          log(response);
+          percentage = response.progress.completion;
+        }, dataType: 'JSON'}),
+      $.ajax({url: config.octoPrintLocation+'api/printer', data: {exclude: 'temperature,sd'}, headers: {'X-Api-Key': config.octoPrintApiKey}, success: function(response) {
+          log(response);
+          printing = response.state.text === "Printing";
+        }, dataType: 'JSON'})
+    ).then( function(job, printer) {
+        a.refreshPrinter(true, printing, percentage);
+      }, function(job, printer) {
+        a.refreshPrinter(false, null, null);
+      }
+    );
+  }
 
   a.updateBuses = function(){
     log('updateBuses');
@@ -257,7 +299,7 @@ var App = function(container){
   a.init = function(){
     log('init');
 
-    a.io = io('http://10.0.1.2:8008');
+    a.io = io(config.ircSocketLocation);
     a.io.on('packet', function(data) {
       log(data);
       if(typeof data.type !== 'undefined'){

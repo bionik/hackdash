@@ -66,7 +66,7 @@
       <div id="header" class="pane header">
         <header>
           <h1>//hackdash</h1>
-          <h2>hacklab turku</h2>
+          <h2>turku hacklab</h2>
         </header>
 
         <div class="datetime">
@@ -80,15 +80,19 @@
         <section class="temperature">
           <h2>temperature at the lab <span id="temperature-value"></span></h2>
           <div class="content">
-            <canvas id="graph_temperature" width="300" height="140"></canvas>
+            <canvas id="graph_temperature" width="300" height="110"></canvas>
           </div>
         </section>
 
         <section class="humidity">
           <h2>humidity at the lab <span id="humidity-value"></span></h2>
           <div class="content">
-            <canvas id="graph_humidity" width="300" height="140"></canvas>
+            <canvas id="graph_humidity" width="300" height="110"></canvas>
           </div>
+        </section>
+
+        <section class="printer">
+          <h2><span id="printer-status">3d printer is offline</span><div id="printer-icon" class="offline"></div></h2>
         </section>
 
         <section class="lights">
